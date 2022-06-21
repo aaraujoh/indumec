@@ -37,7 +37,7 @@ export class StatesJobOrderComponent implements OnInit {
 
   ngOnChanges(): void {
     if(this.jobOrderId)
-      this.jobOrdersService.find(this.jobOrderId).subscribe((response:JobOrder) => this.jobOrder = response);
+      this.jobOrdersService.find(this.jobOrderId).subscribe((response:any) => this.jobOrder = response as JobOrder);
     
   }
 

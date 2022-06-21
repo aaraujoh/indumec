@@ -8,92 +8,106 @@ import { WorkersService } from '../../../services/workers.service';
 const swal = require('sweetalert');
 
 @Component({
-  selector: 'app-work-record-box',
-  templateUrl: './work-record-box.component.html',
-  styleUrls: ['./work-record-box.component.scss']
+    selector: 'app-work-record-box',
+    templateUrl: './work-record-box.component.html',
+    styleUrls: ['./work-record-box.component.scss']
 })
 export class WorkRecordBoxComponent implements OnInit {
 
-  public workRecords: Array<WorkRecord> = [];
+    public workRecords: Array<WorkRecord> = [];
 
-  @Input() jobOrder:JobOrder;
+    @Input() jobOrder: JobOrder;
 
-  public workRecord:WorkRecord = {id:null, hours:null, worker:null, jobOrder:null, registerDate:null,created: null};
+    public worker: Worker =
+        {
+            id: 0,
+            name: '',
+            created: ''
+        };
 
-  public worker:Worker = {id:null, name:null, created:null};
+    public workRecord: WorkRecord = 
+    { 
+        id: 0, 
+        hours: 0, 
+        worker: this.worker, 
+        jobOrder: null, 
+        registerDate: '', 
+        created: '' };
 
-  public workers:Array<Worker> = [];
+    
 
-  constructor(private workRecordsService:WorkRecordsService, private workersService:WorkersService) {}
+    public workers: Array<Worker> = [];
 
-  ngOnInit() {
-    if(this.jobOrder && this.jobOrder.id){
-        this.workRecordsService.findAll(1000, 1, "registerDate", "DESC", "jobOrder", this.jobOrder.id).subscribe((response) => this.workRecords = response as Array<WorkRecord>);
-        this.workersService.findAll(1000, 1, "name", "ASC").subscribe((response) => this.workers = response as Array<Worker>);;
+    constructor(private workRecordsService: WorkRecordsService, private workersService: WorkersService) { }
+
+    ngOnInit() {
+        if (this.jobOrder && this.jobOrder.id) {
+            this.workRecordsService.findAll(1000, 1, "registerDate", "DESC", "jobOrder", this.jobOrder.id).subscribe((response) => this.workRecords = response as Array<WorkRecord>);
+            this.workersService.findAll(1000, 1, "name", "ASC").subscribe((response) => this.workers = response as Array<Worker>);;
+        }
     }
-  }
 
-  /**
-   * save
-   */
-  public save(modal:any) {
+    /**
+     * save
+     */
+    public save(modal: any) {
         this.workRecord.jobOrder = this.jobOrder;
         this.workRecordsService.save(this.workRecord).subscribe(() => {
             this.workRecordsService.findAll(1000, 1, "registerDate", "DESC", "jobOrder", this.jobOrder.id).subscribe((response) => {
-                this.workRecords = response.content as Page<WorkRecord>;
+                this.workRecords = response as WorkRecord[];
                 swal('Operación exitosa!', 'La operación se realizó con exito.', 'success');
                 modal.hide();
             });
         });
-  }
+    }
 
-  /**
-   * deleteWorkRecord
-   */
-  public delete(id:number) {
+    /**
+     * deleteWorkRecord
+     */
+    public delete(id: number) {
 
-    swal({
-        title: 'Estás seguro?',
-        text: 'El registro se eliminará de forma permanente en el sistema.',
-        icon: 'warning',
-        buttons: {
-            cancel: {
-                text: 'No, cancelar!',
-                value: null,
-                visible: true,
-                className: "",
-                closeModal: false
-            },
-            confirm: {
-                text: 'Si, continuar!',
-                value: true,
-                visible: true,
-                className: "bg-danger",
-                closeModal: false
+        swal({
+            title: 'Estás seguro?',
+            text: 'El registro se eliminará de forma permanente en el sistema.',
+            icon: 'warning',
+            buttons: {
+                cancel: {
+                    text: 'No, cancelar!',
+                    value: null,
+                    visible: true,
+                    className: "",
+                    closeModal: false
+                },
+                confirm: {
+                    text: 'Si, continuar!',
+                    value: true,
+                    visible: true,
+                    className: "bg-danger",
+                    closeModal: false
+                }
             }
-        }
-    }).then((isConfirm) => {
-        if (isConfirm) {
-            /** Confirmación  **/
-            this.workRecordsService.delete(id).subscribe((response:WorkRecord) => {
-                swal('Operación exitosa!', 'La operación se realizó con exito.', 'success');
-                this.workRecords = this.workRecords.filter((workRecord:WorkRecord) => workRecord.id !== response.id);
-            })
-            /** Confirmación  **/
-        } else {
-            swal('Cancelado!', 'La acción se canceló :)', 'error');
-        }
-    });
-  }
+        }).then((isConfirm: any) => {
+            if (isConfirm) {
+                /** Confirmación  **/
+                this.workRecordsService.delete(id).subscribe((response: any) => {
+                    swal('Operación exitosa!', 'La operación se realizó con exito.', 'success');
+                    this.workRecords = this.workRecords.filter((workRecord: WorkRecord) => workRecord.id !== response.id);
+                })
+                /** Confirmación  **/
+            } else {
+                swal('Cancelado!', 'La acción se canceló :)', 'error');
+            }
+        });
+    }
 
-  /**
-   * totalHours
-   */
-  public totalHours() {
-    let totalHours:number = 0;
-    for(let i = 0;i < this.workRecords.length;i++)
-      totalHours += this.workRecords[i].hours;
+    /**
+     * totalHours
+     */
+    public totalHours() {
+        let totalHours: number = 0;
+        for (let i = 0; i < this.workRecords.length; i++)
+            totalHours += this.workRecords[i].hours;
 
-      return totalHours;
-  }
+        return totalHours;
+    }
 }

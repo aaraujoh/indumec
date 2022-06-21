@@ -5,7 +5,7 @@ export interface Job {
     number:string;
     description:string;
     item:string,
-    kind:Kind,
+    kind: Kind,
     searchField:string,
     components:Array<Job>,
     pictures:Array<any>,

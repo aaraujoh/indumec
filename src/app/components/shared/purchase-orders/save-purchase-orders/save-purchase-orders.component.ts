@@ -7,6 +7,7 @@ import { PurchaseOrdersService } from '../../../../services/purchaseOrders.servi
 import {PurchaseCondition} from '../../../../interfaces/purchase-condition';
 import {Page} from '../../../../interfaces/page';
 import {Kind} from '../../../../interfaces/kind';
+
 import {PurchaseConditionsService} from '../../../../services/purchase-conditions.service';
 import {Requisition} from '../../../../interfaces/requisition';
 const swal = require('sweetalert');
@@ -22,11 +23,11 @@ export class SavePurchaseOrdersComponent implements OnInit {
   @Input() purchase: Purchase;
   @Input() budget: Budget;
   public purchaseConditions: Array<PurchaseCondition> = [];
-  public purchaseOrder =  {id: null, fiscal_condition: '', purchase_condition: null, transport: '', currency: '', other_tax: null, description: '', delivery_address: 'Lateral Ruta 40 Norte Y Callejon Padilla 1956 - Chimbas, San Juan', emission_date: null, estimated_delivery_date: null, provider: {id:null, description:'', cuit:'', address:'', name:'', mail:'', contact:'', phone:''}, created: null, items: []};
+  public purchaseOrder: PurchaseOrder;//{id: null, fiscal_condition: '', purchase_condition: null, transport: '', currency: '', other_tax: null, description: '', delivery_address: 'Lateral Ruta 40 Norte Y Callejon Padilla 1956 - Chimbas, San Juan', emission_date: null, estimated_delivery_date: null, provider: {id:null, description:'', cuit:'', address:'', name:'', mail:'', contact:'', phone:''}, created: null, items: []};
 
   constructor(private purchasesService: PurchasesService, private purchaseOrdersService: PurchaseOrdersService, private purchaseConditionsService: PurchaseConditionsService) {
-    this.purchaseConditionsService.findAll(10000, 1, 'name', 'ASC').subscribe((response: Page<Kind>) => {
-      this.purchaseConditions = response.content;
+    this.purchaseConditionsService.findAll(10000, 1, 'name', 'ASC').subscribe((response) => {
+      this.purchaseConditions = response as PurchaseCondition[];
     });
   }
 
@@ -35,19 +36,34 @@ export class SavePurchaseOrdersComponent implements OnInit {
       this.purchaseOrder = this.budget.purchase_order;
     else {
       this.purchaseOrder.provider = this.budget.provider;
-      if(this.purchase.requisitions.length){
+      if (this.purchase.requisitions.length) {
         this.purchase.requisitions.forEach((requisition: Requisition, index: number) => {
-          this.purchaseOrder.items.push({id: null, item_number: index + 1, description: requisition.description, amount: requisition.amount, unit_of_measurement: requisition.unit_of_measurement, aliquot: null, price: null, created: null })
+          this.purchaseOrder.items.push
+            (
+              {
+                id: 0, item_number: index + 1, description: requisition.description, amount: requisition.amount, unit_of_measurement: Number(requisition.unit_of_measurement), aliquot: 0, price: 0, created: ''
+              }              )
         });
       } else {
-        this.purchaseOrder.items.push({id: null, item_number: 1, description: '', amount: null, unit_of_measurement: null, aliquot: null, price:null, created: null })
+        this.purchaseOrder.items.push({ id: 0, item_number: 1, description: '', amount: 0, unit_of_measurement: 0, aliquot: 0, price: 0, created: '' })
       }
     }
   }
 
 
-  public addPurchaseOrderItem(purchaseOrder: PurchaseOrder, itemNumber: number){
-    purchaseOrder.items.push({id: null, item_number: itemNumber, description: '', amount: null, unit_of_measurement: null, aliquot: null, price:null, created: null });
+  public addPurchaseOrderItem(purchaseOrder: PurchaseOrder, itemNumber: number) {
+    purchaseOrder.items.push(
+      {
+        id: 0, 
+        item_number: itemNumber, 
+        description: '', 
+        amount: 0, 
+        unit_of_measurement: 0, 
+        aliquot: 0, 
+        price: 0, 
+        created: ''
+      }
+    );
   }
 
   public deletePurchaseOrderItem(i:number){
