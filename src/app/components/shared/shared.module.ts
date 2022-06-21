@@ -19,7 +19,6 @@ import { CheckallDirective } from './directives/checkall/checkall.directive';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ColorsService } from './colors/colors.service';
 import { CommonModule } from '@angular/common';
-import { DatepickerModule } from 'ngx-bootstrap/datepicker';
 import { DetailJobsComponent } from "./detail-job/detail-jobs.component";
 import { DocumentsJobComponent } from './documents-job/documents-job.component';
 import { DocumentsJobOrderComponent } from './documents-job-order/documents-job-order.component';
@@ -32,7 +31,7 @@ import { HeaderJobOrderComponent } from './header-job-order/header-job-order.com
 import { HeaderPurchaseComponent } from './header-purchase/header-purchase.component';
 import { HeaderRequisitionComponent } from './header-requisition/header-requisition.component';
 import { HistoryJobComponent } from './history-job/history-job.component';
-import { ImageCropperModule } from 'ng2-img-cropper';
+import { ImageCropperModule } from 'ngx-image-cropper';
 import { InlineEditorModule } from '@qontu/ngx-inline-editor';
 import { JqcloudDirective } from './directives/jqcloud/jqcloud.directive';
 import { LinkJobComponent } from './link-job/link-job.component';
@@ -97,6 +96,12 @@ import { WorkRecordBoxComponent } from './work-record-box/work-record-box.compon
 import localeEs from '@angular/common/locales/es-AR';
 import { registerLocaleData } from '@angular/common';
 
+// import { DatepickerModule } from 'ngx-bootstrap/datepicker';
+// import { FileUploadModule } from 'ng2-file-upload';
+// import { ImageCropperModule } from 'ng2-img-cropper';
+
+
+
 registerLocaleData(localeEs, 'es-AR');
 
 
@@ -125,7 +130,7 @@ registerLocaleData(localeEs, 'es-AR');
         TooltipModule.forRoot(),
         PopoverModule.forRoot(),
         TypeaheadModule.forRoot(),
-        ToasterModule,
+        // ToasterModule, no existe este modulo 
         // Material Modules
         MatAutocompleteModule,
         MatButtonModule,
@@ -212,7 +217,7 @@ registerLocaleData(localeEs, 'es-AR');
         ButtonsModule,
         CarouselModule,
         CollapseModule,
-        DatepickerModule,
+        BsDatepickerModule,
         BsDatepickerModule,
         BsDropdownModule,
         ModalModule,
@@ -224,7 +229,7 @@ registerLocaleData(localeEs, 'es-AR');
         TooltipModule,
         PopoverModule,
         TypeaheadModule,
-        ToasterModule,
+        // ToasterModule,no existe importado este modulo
         FlotDirective,
         SparklineDirective,
         EasypiechartDirective,
@@ -285,7 +290,8 @@ registerLocaleData(localeEs, 'es-AR');
 
 // https://github.com/ocombe/ng2-translate/issues/209
 export class SharedModule {
-    static forRoot(): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders <any>{
+    // static forRoot(): ModuleWithProviders <any>{
         return {
             ngModule: SharedModule
         };
