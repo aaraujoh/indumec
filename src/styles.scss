@@ -1,0 +1,41 @@
+.actions-column-standard {
+    width: 140px;
+    text-align: center;
+}
+
+.id-column-standard {
+    width: 100px;
+}
+
+.action-button {
+    width: 50%;
+    margin-left: 25%;
+}
+
+.actions-column-switch {
+    width: 70px;
+    text-align: center;
+}
+
+.actions-column-3 {
+    width: 180px;
+    text-align: center;
+}
+
+.actions-column-1 {
+    width: 55px;
+    text-align: center;
+}
+
+.actions-column-2 {
+    width: 120px;
+    text-align: center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.ng-invalid.ng-touched:not(form) {
+    border: 1px solid red;
+}
