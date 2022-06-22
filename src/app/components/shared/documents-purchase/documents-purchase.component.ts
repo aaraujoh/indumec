@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, EventEmitter, ElementRef, ViewChild } from '@angular/core';
-import { FileUploader } from 'ng2-file-upload';
+import { Component, ElementRef, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
+
 import { DocumentsService } from '../../../services/documents.service';
-import { Observable } from 'rxjs';
+import { FileUploader } from 'ng2-file-upload';
 import { KindsService } from '../../../services/kinds.service';
+import { Observable } from 'rxjs';
 import { Purchase } from '../../../interfaces/purchase';
 
 const swal = require('sweetalert');
@@ -66,7 +67,7 @@ export class DocumentsPurchaseComponent implements OnInit {
 											closeModal: false
 									}
 							}
-					}).then((isConfirm) => {
+					}).then((isConfirm:any) => {
 							if (isConfirm) {
 									/** Confirmación  **/
 									this.documentsService.delete("purchases", document.id, this.purchase.id).subscribe((response:any) => {

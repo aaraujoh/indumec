@@ -1,4 +1,4 @@
-import { OnInit, OnChanges, OnDestroy, Directive, ElementRef, Input, Output, SimpleChange, EventEmitter } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChange } from '@angular/core';
 
 declare var $: any;
 
@@ -14,7 +14,7 @@ export class FlotDirective implements OnInit, OnChanges, OnDestroy {
     @Input() dataset: any;
     @Input() options: any;
     @Input() attrWidth: any;
-    @Input() height: number;
+    @Input() height: any;
     @Input() series: any;
 
     @Output() ready = new EventEmitter();
@@ -66,7 +66,8 @@ export class FlotDirective implements OnInit, OnChanges, OnDestroy {
         return plotObj;
     }
 
-    onDatasetChanged(dataset) {
+    // agruegue any a dataset
+    onDatasetChanged(dataset:any) {
         if (this.plot) {
             this.plot.setData(dataset);
             this.plot.setupGrid();
@@ -77,8 +78,8 @@ export class FlotDirective implements OnInit, OnChanges, OnDestroy {
             return this.plot;
         }
     }
-
-    onSerieToggled(series) {
+    
+    onSerieToggled(series:any) {
         if (!this.plot || !series) {
             return;
         }
@@ -90,8 +91,8 @@ export class FlotDirective implements OnInit, OnChanges, OnDestroy {
         this.plot.setData(someData);
         this.plot.draw();
 
-        function toggleFor(sName) {
-            return function(s, i) {
+        function toggleFor(sName:any) {
+            return function(s: any, i: any) {
                 if (someData[i] && someData[i][sName]) {
                     someData[i][sName].show = s;
                 }

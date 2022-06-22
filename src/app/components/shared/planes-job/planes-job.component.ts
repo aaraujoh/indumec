@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, EventEmitter, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
+
 import { FileUploader } from 'ng2-file-upload';
-import { PlanesService } from '../../../services/planes.service';
-import { Observable } from 'rxjs';
-import { KindsService } from '../../../services/kinds.service';
 import { Job } from '../../../interfaces/job';
+import { KindsService } from '../../../services/kinds.service';
+import { Observable } from 'rxjs';
+import { PlanesService } from '../../../services/planes.service';
 
 const swal = require('sweetalert');
 
@@ -69,7 +70,7 @@ export class PlanesJobComponent implements OnInit {
                       	closeModal: false
                   	}
               	}
-          	}).then((isConfirm) => {
+          	}).then((isConfirm:any) => {
               	if (isConfirm) {
                   	/** Confirmación  **/
                   	this.planesService.delete(plane.id, this.job.id).subscribe((response:any) => {

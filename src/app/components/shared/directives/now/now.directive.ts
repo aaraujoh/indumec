@@ -1,13 +1,14 @@
-import { OnInit, OnDestroy, Directive, Input, ElementRef } from '@angular/core';
 import * as moment from 'moment';
+
+import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
 
 @Directive({
     selector: '[now]'
 })
 export class NowDirective implements OnInit, OnDestroy {
 
-    @Input() format;
-    intervalId;
+    @Input() format :any;
+    intervalId :any;
 
     constructor(public element: ElementRef) { }
 

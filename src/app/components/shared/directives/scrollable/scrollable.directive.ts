@@ -1,4 +1,5 @@
-import { OnInit, Directive, Input, ElementRef } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+
 declare var $: any;
 
 @Directive({
@@ -6,7 +7,7 @@ declare var $: any;
 })
 export class ScrollableDirective implements OnInit {
 
-    @Input() height: number;
+    @Input() height: any;
     defaultHeight = 250;
 
     constructor(public element: ElementRef) { }

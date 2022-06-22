@@ -6,10 +6,10 @@ declare var $: any;
 })
 export class JqcloudDirective implements OnInit, OnDestroy, OnChanges {
 
-    @Input() words;
-    @Input() width;
-    @Input() height;
-    @Input() steps;
+    @Input() words : any;
+    @Input() width : any;
+    @Input() height : any;
+    @Input() steps : any;
     $elem: any;
     options: any;
     initialized = false; // flag to not update before plugin was initialized

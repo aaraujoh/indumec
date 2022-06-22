@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
-import {purchaseStates} from '../../../../assets/source-data/states';
-import { PurchasesService } from '../../../services/purchases.service';
-import { PurchaseState } from '../../../interfaces/purchase-state';
-import { State } from '../../../interfaces/state';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+
 import { Purchase } from '../../../interfaces/purchase';
+import { PurchaseState } from '../../../interfaces/purchase-state';
+import { PurchasesService } from '../../../services/purchases.service';
+import { State } from '../../../interfaces/state';
+import {purchaseStates} from '../../../../assets/source-data/states';
 
 const swal = require('sweetalert');
 
