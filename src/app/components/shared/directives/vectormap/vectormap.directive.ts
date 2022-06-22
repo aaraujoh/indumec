@@ -1,4 +1,5 @@
-import { OnInit, Directive, Input, ElementRef, OnDestroy } from '@angular/core';
+import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
+
 declare var $: any;
 
 @Directive({
@@ -6,7 +7,7 @@ declare var $: any;
 })
 export class VectormapDirective implements OnInit, OnDestroy {
 
-    @Input() mapHeight: number;
+    @Input() mapHeight: any;
     @Input() mapName: any;
     @Input() mapOptions: any;
     @Input() seriesData: any;
@@ -55,7 +56,7 @@ export class VectormapDirective implements OnInit, OnDestroy {
                     stroke: this.mapOptions.markerColor
                 }
             },
-            onRegionLabelShow: (e, el, code) => {
+            onRegionLabelShow: (e:any, el:any, code:any) => {
                 if (this.seriesData && this.seriesData[code]) {
                     el.html(el.html() + ': ' + this.seriesData[code] + ' visitors');
                 }

@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, EventEmitter, ElementRef, ViewChild } from '@angular/core';
-import { FileUploader } from 'ng2-file-upload';
+import { Component, ElementRef, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
+
 import { DocumentsService } from '../../../services/documents.service';
-import { Observable } from 'rxjs';
-import { KindsService } from '../../../services/kinds.service';
+import { FileUploader } from 'ng2-file-upload';
 import { JobOrder } from '../../../interfaces/job-order';
+import { KindsService } from '../../../services/kinds.service';
+import { Observable } from 'rxjs';
 
 const swal = require('sweetalert');
 
@@ -17,9 +18,11 @@ export class DocumentsJobOrderComponent implements OnInit {
 
   public uploader: FileUploader = new FileUploader({});
 
-	@Input() jobOrder:JobOrder;
+	@Input()
+	jobOrder!: JobOrder;
 	public kindDocuments:[];
-	@ViewChild('inputUploader') inputUploader: ElementRef;
+	@ViewChild('inputUploader')
+	inputUploader!: ElementRef;
 
 	public claims:any;
 

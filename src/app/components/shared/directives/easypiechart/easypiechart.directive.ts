@@ -1,4 +1,4 @@
-import { OnInit, OnChanges, Directive, Input, SimpleChange, ElementRef } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, OnInit, SimpleChange } from '@angular/core';
 
 declare var $: any;
 const EasyPieChart = require('easy-pie-chart');
@@ -28,8 +28,8 @@ export class EasypiechartDirective implements OnInit, OnChanges {
     };
 
     public pieChart: any;
-    @Input() percent;
-    @Input() options;
+    @Input() percent: any ;
+    @Input() options: any;
 
     constructor(public element: ElementRef) {
         this.percent = this.percent || 0;

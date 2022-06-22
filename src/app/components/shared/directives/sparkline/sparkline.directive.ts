@@ -1,4 +1,5 @@
-import { OnInit, OnDestroy, Directive, Input, ElementRef } from '@angular/core';
+import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
+
 declare var $: any;
 
 @Directive({
@@ -6,8 +7,8 @@ declare var $: any;
 })
 export class SparklineDirective implements OnInit, OnDestroy {
 
-    @Input() sparkline;
-    @Input() values;
+    @Input() sparkline :any;
+    @Input() values :any;
 
     // generate a unique resize event so we can detach later
     private resizeEventId = 'resize.sparkline' + 1324;
@@ -46,7 +47,7 @@ export class SparklineDirective implements OnInit, OnDestroy {
         }
     }
 
-    runSparkline(options) {
+    runSparkline(options:any) {
         if(this.values) {
             if( typeof this.values === 'string')
                 this.values = this.values.split(','); // assume comma separated string

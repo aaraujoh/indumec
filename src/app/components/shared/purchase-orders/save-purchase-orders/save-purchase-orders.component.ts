@@ -92,7 +92,9 @@ export class SavePurchaseOrdersComponent implements OnInit {
           }
         }
 
-        this.purchasesService.save(this.purchase).subscribe((purchase:Purchase) => {
+        // elimine this.purchasesService.save(this.purchase).subscribe((purchase:Purchase)
+
+        this.purchasesService.save(this.purchase).subscribe((Purchase) => {
           swal('Operación exitosa!', 'La operación se realizó con exito.', 'success');
           this.savedPurchaseOrder.emit(this.purchase);
         });
