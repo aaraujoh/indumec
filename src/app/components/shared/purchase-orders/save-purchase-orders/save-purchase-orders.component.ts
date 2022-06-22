@@ -1,15 +1,16 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { PurchaseOrder } from '../../../../interfaces/purchase-order';
-import { Purchase } from '../../../../interfaces/purchase';
-import { Budget } from '../../../../interfaces/budget';
-import { PurchasesService } from '../../../../services/purchases.service';
-import { PurchaseOrdersService } from '../../../../services/purchaseOrders.service';
-import {PurchaseCondition} from '../../../../interfaces/purchase-condition';
-import {Page} from '../../../../interfaces/page';
-import {Kind} from '../../../../interfaces/kind';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+import { Budget } from '../../../../interfaces/budget';
+import {Kind} from '../../../../interfaces/kind';
+import {Page} from '../../../../interfaces/page';
+import { Purchase } from '../../../../interfaces/purchase';
+import {PurchaseCondition} from '../../../../interfaces/purchase-condition';
 import {PurchaseConditionsService} from '../../../../services/purchase-conditions.service';
+import { PurchaseOrder } from '../../../../interfaces/purchase-order';
+import { PurchaseOrdersService } from '../../../../services/purchaseOrders.service';
+import { PurchasesService } from '../../../../services/purchases.service';
 import {Requisition} from '../../../../interfaces/requisition';
+
 const swal = require('sweetalert');
 
 @Component({
