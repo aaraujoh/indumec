@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
 import { Job } from '../../../interfaces/job';
 
 @Component({
@@ -8,7 +9,8 @@ import { Job } from '../../../interfaces/job';
 })
 export class CardJobComponent implements OnInit {
 
-  @Input() job: Job;
+  @Input()
+  job!: Job;
 
   constructor() { }
 
