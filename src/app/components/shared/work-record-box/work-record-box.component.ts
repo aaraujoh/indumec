@@ -5,6 +5,7 @@ import { JobOrder } from '../../../interfaces/job-order';
 import { WorkRecordsService } from '../../../services/work-records.service';
 import { Page } from '../../../interfaces/page';
 import { WorkersService } from '../../../services/workers.service';
+import { Kind } from 'src/app/interfaces/kind';
 const swal = require('sweetalert');
 
 @Component({
@@ -16,7 +17,33 @@ export class WorkRecordBoxComponent implements OnInit {
 
     public workRecords: Array<WorkRecord> = [];
 
-    @Input() jobOrder: JobOrder;
+    kind: Kind = {
+        id: 0,
+        name: '',
+        context: '',
+        created: ''
+    }
+
+    @Input() jobOrder: JobOrder = {
+        id: 0,
+        purchase_order_number: '',
+        in_date: '',
+        compromised_date: '',
+        delivery_date: '',
+        jobs_amount: 0,
+        budgeted_hours: 0,
+        percentage_advance: 0,
+        description: '',
+        bill_number: '',
+        remit_number: '',
+        real_hours_production: 0,
+        observations: '',
+        current_state: '',
+        job: Job,
+        kind: this.kind,
+        states: Array<State>,
+        documents: Array<any>
+    };
 
     public worker: Worker =
         {
@@ -24,6 +51,8 @@ export class WorkRecordBoxComponent implements OnInit {
             name: '',
             created: ''
         };
+
+    
 
     public workRecord: WorkRecord = 
     { 

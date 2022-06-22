@@ -5,12 +5,13 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CoreModule } from './components/core/core.module';
-import { FormsModule } from '@angular/forms';
 import { LayoutModule } from './components/layout/layout.module';
-import { NgModule } from '@angular/core';
 import { RoutesModule } from './components/routes/routes.module';
 import { SharedModule } from './components/shared/shared.module';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -18,24 +19,23 @@ export function createTranslateLoader(http: HttpClient) {
 
 @NgModule({
   declarations: [
-      AppComponent
+    AppComponent
   ],
   imports: [
-      FormsModule,
-      BrowserModule,
-      HttpClientModule,
-      BrowserAnimationsModule, // required for ng2-tag-input
-      CoreModule,
-      LayoutModule,
-      SharedModule.forRoot(),
-      RoutesModule,
-      TranslateModule.forRoot({
-          loader: {
-              provide: TranslateLoader,
-              useFactory: (createTranslateLoader),
-              deps: [HttpClient]
-          }
-      })
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule, // required for ng2-tag-input
+    CoreModule,
+    LayoutModule,
+    SharedModule.forRoot(),
+    RoutesModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    })
   ],
   bootstrap: [AppComponent]
 })

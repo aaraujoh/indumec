@@ -16,13 +16,23 @@ export class StatesPurchaseComponent implements OnInit {
 
   @Input() states:Array<State> = [];
 
-  @Input() purchaseId:number;
+  @Input() purchaseId: number = 0;
 
-  @Input() currentState:PurchaseState;
+  @Input() currentState: PurchaseState=
+  {
+    id: 0,
+    name:'',
+    hours_active:0
+  };
 
-  public state:State = {id:null, name:null, hours_active:null};
+  public state: State =
+    {
+      id: 0,
+      name: '',
+      hours_active: 0
+    };
   public purchaseStates:Array<State> = purchaseStates;
-  public purchase:Purchase;
+  public purchase: Purchase;
 
   constructor(private purchasesService:PurchasesService) { }
 
@@ -31,13 +41,13 @@ export class StatesPurchaseComponent implements OnInit {
 
   ngOnChanges(): void {
     if(this.purchaseId)
-      this.purchasesService.find(this.purchaseId).subscribe((response:Purchase) => this.purchase = response);
+      this.purchasesService.find(this.purchaseId).subscribe((response) => this.purchase = response as Purchase);
     
   }
 
   public changeState(modal:any){
-    this.purchasesService.changeState(this.purchaseId, this.state).subscribe((response:[]) => {
-        this.states = response;
+    this.purchasesService.changeState(this.purchaseId, this.state).subscribe((response) => {
+        this.states = response as [];
         this.currentState = this.state;
         modal.hide();
     });

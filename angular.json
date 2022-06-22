@@ -107,5 +107,8 @@
       }
     }
   },
-  "defaultProject": "indumet-main"
+  "defaultProject": "indumet-main",
+  "cli": {
+    "analytics": "a968a62d-1538-4e95-b190-1aeaf649c82d"
+  }
 }
