@@ -20,10 +20,10 @@ const swal = require('sweetalert');
 export class SavePurchaseOrdersComponent implements OnInit {
 
   @Output() savedPurchaseOrder = new EventEmitter<Purchase>();
-  @Input() purchase: Purchase;
-  @Input() budget: Budget;
+  @Input() purchase!: Purchase;
+  @Input() budget!: Budget;
   public purchaseConditions: Array<PurchaseCondition> = [];
-  public purchaseOrder: PurchaseOrder;//{id: null, fiscal_condition: '', purchase_condition: null, transport: '', currency: '', other_tax: null, description: '', delivery_address: 'Lateral Ruta 40 Norte Y Callejon Padilla 1956 - Chimbas, San Juan', emission_date: null, estimated_delivery_date: null, provider: {id:null, description:'', cuit:'', address:'', name:'', mail:'', contact:'', phone:''}, created: null, items: []};
+  public purchaseOrder!: PurchaseOrder;//{id: null, fiscal_condition: '', purchase_condition: null, transport: '', currency: '', other_tax: null, description: '', delivery_address: 'Lateral Ruta 40 Norte Y Callejon Padilla 1956 - Chimbas, San Juan', emission_date: null, estimated_delivery_date: null, provider: {id:null, description:'', cuit:'', address:'', name:'', mail:'', contact:'', phone:''}, created: null, items: []};
 
   constructor(private purchasesService: PurchasesService, private purchaseOrdersService: PurchaseOrdersService, private purchaseConditionsService: PurchaseConditionsService) {
     this.purchaseConditionsService.findAll(10000, 1, 'name', 'ASC').subscribe((response) => {
@@ -82,8 +82,8 @@ export class SavePurchaseOrdersComponent implements OnInit {
   public save() {
 
     this.purchaseOrdersService.save(this.purchaseOrder).subscribe(
-      (purchaseOrder:PurchaseOrder) => {
-        this.purchaseOrder = purchaseOrder;
+      (response) => {
+        this.purchaseOrder = response as PurchaseOrder;
         for(let i = 0;i < this.purchase.budgets.length;i++){
           if(this.purchase.budgets[i].id == this.budget.id){
             this.budget.purchase_order = this.purchaseOrder;
