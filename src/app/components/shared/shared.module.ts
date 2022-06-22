@@ -1,4 +1,8 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+    MatNativeDateModule,
+    MatRippleModule
+}  from '@angular/material/core';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { AccordionModule } from 'ngx-bootstrap/accordion';
@@ -14,6 +18,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CheckallDirective } from './directives/checkall/checkall.directive';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ColorsService } from './colors/colors.service';
+import { CommonModule } from '@angular/common';
 import { DetailJobsComponent } from "./detail-job/detail-jobs.component";
 import { DocumentsJobComponent } from './documents-job/documents-job.component';
 import { DocumentsJobOrderComponent } from './documents-job-order/documents-job-order.component';
@@ -30,8 +35,40 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { InlineEditorModule } from '@qontu/ngx-inline-editor';
 import { JqcloudDirective } from './directives/jqcloud/jqcloud.directive';
 import { LinkJobComponent } from './link-job/link-job.component';
-
+import {
+    MatAutocompleteModule,
+} from '@angular/material/autocomplete';
+import {MatButtonModule} from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule, } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule }  from '@angular/material/icon';
+import { MatInputModule }  from '@angular/material/input';
+import { MatListModule }  from '@angular/material/list';
+import { MatMenuModule }  from '@angular/material/menu';
+import { MatPaginatorModule }  from '@angular/material/paginator';
+import { MatProgressBarModule }  from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule }  from '@angular/material/progress-spinner';
+import { MatRadioModule }  from '@angular/material/radio';
+import { MatSelectModule }  from '@angular/material/select';
+import { MatSidenavModule }  from '@angular/material/sidenav';
+import { MatSlideToggleModule }  from '@angular/material/slide-toggle';
+import { MatSliderModule }  from '@angular/material/slider';
+import { MatSnackBarModule }  from '@angular/material/snack-bar';
+import { MatSortModule }  from '@angular/material/sort';
+import { MatStepperModule }  from '@angular/material/stepper';
+import { MatTableModule }  from '@angular/material/table';
+import { MatTabsModule }  from '@angular/material/tabs';
+import {MatToolbarModule}  from '@angular/material/toolbar';
+import { MatTooltipModule }  from '@angular/material/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxSelectModule } from 'ngx-select-ex';
 import { NowDirective } from './directives/now/now.directive';
 import { OrderModule } from 'ngx-order-pipe';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -52,16 +89,16 @@ import { StatesPurchaseComponent } from './states-purchase/states-purchase.compo
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { VectormapDirective } from './directives/vectormap/vectormap.directive';
 import { WorkRecordBoxComponent } from './work-record-box/work-record-box.component';
 import localeEs from '@angular/common/locales/es-AR';
-import { registerLocaleData, CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
-import { NgxSelectModule } from 'ngx-select-ex';
-import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { registerLocaleData } from '@angular/common';
+
+// import { DatepickerModule } from 'ngx-bootstrap/datepicker';
+// import { FileUploadModule } from 'ng2-file-upload';
+// import { ImageCropperModule } from 'ng2-img-cropper';
 
 
 
@@ -70,7 +107,7 @@ registerLocaleData(localeEs, 'es-AR');
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
-    imports : [
+    imports: [
         NgxSelectModule,
         CommonModule,
         FormsModule,
@@ -95,11 +132,11 @@ registerLocaleData(localeEs, 'es-AR');
         TypeaheadModule.forRoot(),
         // ToasterModule, no existe este modulo 
         // Material Modules
-        MatCardModule,
-        MatCheckboxModule,
         MatAutocompleteModule,
         MatButtonModule,
-        MatButtonToggleModule,       
+        MatButtonToggleModule,
+        MatCardModule,
+        MatCheckboxModule,
         MatChipsModule,
         MatTableModule,
         MatDatepickerModule,
@@ -168,8 +205,95 @@ registerLocaleData(localeEs, 'es-AR');
         SavePurchaseOrdersComponent,
         PrintPurchaseOrdersComponent,
         HeaderRequisitionComponent
+    ],
+    exports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        TranslateModule,
+        RouterModule,
+        AccordionModule,
+        AlertModule,
+        ButtonsModule,
+        CarouselModule,
+        CollapseModule,
+        BsDatepickerModule,
+        BsDatepickerModule,
+        BsDropdownModule,
+        ModalModule,
+        PaginationModule,
+        ProgressbarModule,
+        RatingModule,
+        TabsModule,
+        TimepickerModule,
+        TooltipModule,
+        PopoverModule,
+        TypeaheadModule,
+        // ToasterModule,no existe importado este modulo
+        FlotDirective,
+        SparklineDirective,
+        EasypiechartDirective,
+        CheckallDirective,
+        VectormapDirective,
+        NowDirective,
+        ScrollableDirective,
+        JqcloudDirective,
+        // Material Modules
+        MatAutocompleteModule,
+        MatButtonModule,
+        MatButtonToggleModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatChipsModule,
+        MatTableModule,
+        MatDatepickerModule,
+        MatDialogModule,
+        MatExpansionModule,
+        MatFormFieldModule,
+        MatGridListModule,
+        MatIconModule,
+        MatInputModule,
+        MatListModule,
+        MatMenuModule,
+        MatPaginatorModule,
+        MatProgressBarModule,
+        MatProgressSpinnerModule,
+        MatRadioModule,
+        MatRippleModule,
+        MatSelectModule,
+        MatSidenavModule,
+        MatSlideToggleModule,
+        MatSliderModule,
+        MatSnackBarModule,
+        MatSortModule,
+        MatTabsModule,
+        MatToolbarModule,
+        MatTooltipModule,
+        MatNativeDateModule,
+        MatStepperModule,
+        DetailJobsComponent,
+        AddJobsComponent,
+        AddJobOrderComponent,
+        HeaderJobOrderComponent,
+        StatesJobOrderComponent,
+        WorkRecordBoxComponent,
+        DocumentsJobOrderComponent,
+        AddPurchasesComponent,
+        HeaderPurchaseComponent,
+        StatesPurchaseComponent,
+        DocumentsPurchaseComponent,
+        SavePurchaseOrdersComponent,
+        PrintPurchaseOrdersComponent,
+        HeaderRequisitionComponent
     ]
 })
 
-
-export class SharedModule {}
+// https://github.com/ocombe/ng2-translate/issues/209
+export class SharedModule {
+    static forRoot(): ModuleWithProviders <any>{
+    // static forRoot(): ModuleWithProviders <any>{
+        return {
+            ngModule: SharedModule
+        };
+    }
+}
