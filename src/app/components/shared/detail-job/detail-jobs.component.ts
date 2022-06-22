@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { JobsService } from '../../../services/jobs.service';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+
 import { Job } from '../../../interfaces/job';
+import { JobsService } from '../../../services/jobs.service';
 
 const swal = require('sweetalert');
 
@@ -12,12 +13,13 @@ const swal = require('sweetalert');
 })
 export class DetailJobsComponent implements OnInit {
   
-	public job:Job = {id:null, number:"", item:"", description:"", kind:null, components:[], planes:[], pictures:[], documents:[], searchField:null};
-    public selectedComponent:Job = {id:null, number:"", item:"", description:"", kind:null, components:[], pictures:[], planes:[], documents:[], searchField:null};
+	public job:Job = {id:0, number:"", item:"", description:"", kind:null, components:[], planes:[], pictures:[], documents:[], searchField:""};
+    public selectedComponent:Job = {id:0, number:"", item:"", description:"", kind:null, components:[], pictures:[], planes:[], documents:[], searchField:""};
     public jobStack:Array<number> = [];
     public claims:any;
 
-	@Input() id: number;
+	@Input()
+    id!: number;
   
     constructor(private jobsService:JobsService) {
         this.claims = JSON.parse(localStorage.getItem('indumet-workload-user-claims'));
@@ -57,7 +59,7 @@ export class DetailJobsComponent implements OnInit {
         this.jobsService.linkComponent(jobId, subJobId).subscribe(() => {
             swal('Operación exitosa!', 'La operación se realizó con exito.', 'success');
             this.job.components.push(this.selectedComponent);
-            this.selectedComponent = {id:null, number:"", item:"", description:"", kind:null, components:[], pictures:[], planes:[], documents:[], searchField:null};
+            this.selectedComponent = {id:0, number:"", item:"", description:"", kind:null, components:[], pictures:[], planes:[], documents:[], searchField:""};
         });
     } 
 }

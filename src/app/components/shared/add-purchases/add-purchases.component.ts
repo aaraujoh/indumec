@@ -1,10 +1,12 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { PurchasesService } from '../../../services/purchases.service';
-import { SectorsService } from '../../../services/sectors.service';
-import { Purchase } from '../../../interfaces/purchase';
-import { Sector } from '../../../interfaces/sector';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { Page } from '../../../interfaces/page';
+import { Purchase } from '../../../interfaces/purchase';
+import { PurchasesService } from '../../../services/purchases.service';
 import { Requisition } from '../../../interfaces/requisition';
+import { Sector } from '../../../interfaces/sector';
+import { SectorsService } from '../../../services/sectors.service';
+
 const swal = require('sweetalert');
 @Component({
   selector: 'app-add-purchases',
